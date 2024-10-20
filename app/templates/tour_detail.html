@@ -1,0 +1,6 @@
+<h1>{{ tour.name }}</h1>
+<p>{{ tour.desc }}</p>
+<p>Ціна: {{ tour.price }} грн</p>
+<img src="{{ tour.image }}" alt="{{ tour.name }}" style="max-width: 100%; height: auto;">
+<p>Місто відправлення: {{ tour.departure.city }}</p>  
+<a href="{{ url_for('index') }}">Назад до списку турів</a>

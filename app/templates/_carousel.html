@@ -1,0 +1,17 @@
+<div id="my_carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        {% for item in iterable %}
+            <div class="carousel-item {% if loop.index0 == 0 %}active{% endif %}">
+                <img src="{{ item }}" class="d-block w-100" alt="Image {{ loop.index }}">
+            </div>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#my_carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#my_carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

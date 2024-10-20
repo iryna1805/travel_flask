@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+
+{% block main %}
+    <h1>Departures</h1>
+    <div class="row">
+        {% for tour in tours %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ tour.image }}" class="card-img-top" alt="{{ tour.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tour.name }}</h5>
+                        <p class="card-text">{{ tour.description }}</p>
+                        <p class="card-text"><strong>Price: </strong>{{ tour.price }} $</p>
+                        <a href="{{ url_for('list_tours') }}" class="btn btn-primary">View Tour</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
