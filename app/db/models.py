@@ -10,9 +10,9 @@ class Departure(SQLModel, table=True):
     @staticmethod
     def mock_data() -> List['Departure']:
         return [
-            Departure(id=1, name="Київ", city="Kyiv"),
-            Departure(id=2, name="Львів", city="Lviv"),
-            Departure(id=3, name="Чернівці", city="Chernivtsi"),
+            Departure(id=1, name="Київ", city="Kyiv"), 
+            Departure(id=2, name="Львів", city="Lviv"), 
+            Departure(id=3, name="Чернівці", city="Chernivtsi"),  
         ]
 
 class Tour(SQLModel, table=True):
@@ -26,7 +26,6 @@ class Tour(SQLModel, table=True):
 
     @staticmethod
     def mock_data(departures: List[Departure]) -> List['Tour']:
-        import random
         images = [
             "https://scc.losrios.edu/shared/img/body-misc/study-abroad/paris-france-night.jpg",
             "https://www.voyagetips.com/wp-content/uploads/2017/05/colisee-rome-840x486.jpg",
@@ -38,7 +37,7 @@ class Tour(SQLModel, table=True):
                 name="Тур до Парижа",
                 desc="Подорож до столиці Франції з Києва",
                 price=10000.00,
-                image=random.choice(images),
+                image=images[0],
                 departure_id=departures[0].id
             ),
             Tour(
@@ -46,7 +45,7 @@ class Tour(SQLModel, table=True):
                 name="Тур до Риму",
                 desc="Подорож до Вічного міста з Львова",
                 price=12000.00,
-                image=random.choice(images),
+                image=images[1],
                 departure_id=departures[1].id
             ),
             Tour(
@@ -54,7 +53,7 @@ class Tour(SQLModel, table=True):
                 name="Тур до Берліна",
                 desc="Подорож до столиці Німеччини з Чернівців",
                 price=9000.00,
-                image=random.choice(images),
+                image=images[2],
                 departure_id=departures[2].id
             )
         ]

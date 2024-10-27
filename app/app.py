@@ -5,32 +5,10 @@ from db.models import Tour, Departure
 from db.helpers import AutoincrementID
 #from sqlmodel import Session
 from config import Config
+from populate_data import populate_mock_data
 
 
 app = Flask(__name__)
-
-def populate_mock_data():
-    departures = [
-        Departure(name="Париж", city="Paris"),
-        Departure(name="Лондон", city="London"),
-        Departure(name="Нью-Йорк", city="New York"),
-        Departure(name="Токіо", city="Tokyo")
-    ]
-    
-    with Session(Config.engine) as session:
-        existing_departures = session.execute(text("SELECT COUNT(*) FROM departure")).first()
-        
-        if existing_departures[0] == 0:  
-            for dep in departures:
-                session.add(dep)
-            session.commit() 
-
-            mock_tours = Tour.mock_data(departures)
-            for tour in mock_tours:
-                session.add(tour)
-            session.commit() 
-        else:
-            print("Дані вже існують у базі.")
 
 
 @app.get("/")
@@ -48,9 +26,5 @@ def tour_detail(tour_id):
     return render_template("tour_detail.html", tour=tour)
 
 if __name__ == "__main__":
-    with Config.engine.begin() as conn:
-        AutoincrementID.metadata.create_all(conn)
-
-    print("Таблиці створено успішно.")
     populate_mock_data()
     app.run(debug=True)
